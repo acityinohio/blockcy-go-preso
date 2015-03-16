@@ -1,0 +1,73 @@
+Deciphering BlockCypher
+A journey in blockchain APIs
+13 Mar 2015
+
+Josh Cincinnati
+http://bitbanter.com/
+@acityinohio
+
+* The Best Way to Learn an API? Build a Wrapper!
+.image images/notawrapper.gif 400 _
+.caption _No,_not_that_rapper_
+
+* As a diehard Gopher, I used Go.
+
+* Some Easy Queries 
+.play code/get_block.go
+[[https://live.blockcypher.com/btc/block/294322/][Take a live look]]
+
+* Similarity by Smart Design
+.image images/blockcylogo.svg 150 _
+- You focus on your application, BlockCypher focuses on scaling the crypto.
+- That said, BlockCypher aligns itself with the core tenants of cryptocurrency.
+- If you ever want to run your implementation, you can.
+- In many cases, a drop-in replacement for your own daemon.
+
+* Let's Kick It Up a Notch
+.image images/notch.jpg 400 _
+.caption _No,_not_that_notch_
+
+* Pay It Forward
+.image images/pay-it-forward.jpg 300 _
+.caption _Haley_Joel_Osment_Explaining_Merkle_Trees_
+BlockCypher has an incredibly simple payment forwarding service.
+But it's deceptively powerful.
+
+* Paying By the Rules
+.play code/payitforward.go /START OMIT/,/END OMIT/
+[[http://live.blockcypher.com/][To the cloud!...based block explorer!]]
+
+* Let's Kick It Up Even More Notches
+.image images/notch20.jpg 400 _
+.caption _Still_not_that_Notch,_but_it's_getting_epic_
+
+* An Anecdote
+.image images/yodawg.jpg 400 _
+.caption _You_might_be_able_to_see_where_this_is_going_
+In addition to loving Go, I also love Go (Igo/Baduk).
+
+* Steve Was (Initially) Not Enthused 
+.image images/steveandjosh1.png 400 _
+
+* Steve Is Still Not Enthused
+.image images/steveandjosh2.png
+
+* Whither BlockCypher?
+One word: cryptowagers. 2-of-3 multisig would be perfect.
+
+An über-minimal MVP:
+
+- Players enter board size, public keys for multisig address and "move" signing, final address for funds if they win, and send initial funds.
+- Why not use ECDSA signing for the moves, too? No accounts, no problem!
+- Players move pieces by "signing" their move, server checks to make sure they're not moving twice in a row (and associates board state with multisig).
+- Once both players pass, score is checked. Server readies transaction to winning player's address, asks that player to sign; broadcasts to network.
+- If both players quit/don't want to use the server anymore, they can sign their own multisig transaction with or without BlockCypher's API.
+
+* Demo Time!
+
+* Maybe a Silly Example, but...
+- With better UX, could actually be a nice experience.
+- And consider what it could represent.
+- Creating webapps/apps that work in trust-limited or database-limited environments.
+- The possibilities are endless.
+- ...and importantly for me, when I finally beat Steve at Go, I'll get bitcoin for my trouble.

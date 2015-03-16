@@ -1,0 +1,70 @@
+BlockCy Presentation Notes
+March 13, 2015
+
+* Intro
+- Welcome! I'm Josh Cincinnati, and I'm half bitcoin enthusiast, half entertainer, and half half-assed mathematician (which may put me at more than 100% of a person, but I'm not really 100% sure).
+- I'm excited to talk to you today, and wanted to first thank BlockCypher for inviting me. I've been into bitcoin for about three years now, and have used a whole bunch of APIs to interact with the blockchain in a variety of side projects, including Coinbase's, Chain's, BlockCypher's, and any number of others. As you can probably guess, I'm a really big fan of BlockCypher's, and wanted to share a bit of my experience working with the API in the hopes that it might help you in your own blockchain endeavors.
+
+* The Best Way to Learn an API? Build a Wrapper!
+- No, not that kind of rapper, although my face looks a little bit like that when I code.
+- Anyway, I've found that one of the best ways to learn an API is to build a client library.
+
+* Some Easy Queries
+- There wasn't an official Go wrapper, so I could at least convince myself it was somewhat productive.
+
+* Consider our prior JSON Response, Golang-afied
+- Code is pretty easy to read, but I'll explain it each step of the way.
+- And what's neat is that I can actually run it in this presentation window; it's actually running a goroutine on my box in the background, so you can see the response. And I'll prove it by changing the call around.
+::HIGHLIGHT that it's using the wrapper that I wrote::
+::Explain the code, make sure to try bringing in latest hash on chain::
+::Remember to go to blockchain explorer!::
+
+* Similarity by Smart Design
+- Notice how similar the response is to bitcoind? That's by design. Unlike a lot of other API designs---which mix offchain calls and heavily alter responses---BlockCypher lines up very nicely with client implementations, with smart (but small) modifications that are backwards-compatible to bitcoind, composed with other convenience methods. 
+- As I mentioned before, unlike some other APIs, BlockCypher aligns itself with the core tenants of cryptocurrency---not just from an API design perspective, but philosophically. Nothing is off-chain;  the ideals of decentralization receive more than lip service.
+- And to qualify that even further: The team behind BlockCypher has built enterprise-grade applications for years, with enterprise-grade expectations. They can focus on making an incredibly scalable API for blockchains, while you can focus on your application. And they believe so much in their product that they make it mirror functionality from local blockchain daemons---so you can change it whenever you'd like. Or, if you've already built applications on top of bitcoind, it's super easy to swap in BlockCypher.
+
+* Let's Kick it Up a Notch
+- No not that Notch; let's not kick him.
+- As you'd expect, BlockCypher has all manner of ways to query various blockchains (my wrapper targets bitcoin and blockcypher's testnet, but you can also query litecoin, dogecoin, urocoin)
+- But let's talk about some of the extras BlockCypher brings to the table, and what you can build with them. Now it's time for us to do some Miningcraft...get it? Because of bitcoin mining? I know, hilarious.
+
+* Pay It Forward
+- Want to build the simplest payment forwarding service imaginable, while still maintaining control? Check this out, no big bitcoin payment service needed. I'll also use their new micropayments service in the process, which is really fantastic in its own right---completely on-chain microtransactions whose mining fees are covered for the first 8,000 payments.
+
+* Paying by the Rules
+::Explain the code, go to block explorer::
+- So this was a simple example, but you can obviously see the potential. You can also have new_tx callback webhooks adding for each payment forwarding request, which really lets you customize your inventory/invoicing system. You could have a bitcoin address associated with every virtual item in a game, or person on a social network, and have them all forwarded to a single address...there are lots of neat possibilities.
+
+* Let's Kick it Up Even More Notches
+
+* An Anecdote
+- So, in addition to loving Go, I also love Go (Baduk). A few weeks ago, my former roomie Steve asked me for a recommendation for a way for us to play Go, because he was also interested in playing. It's a much more fun game to play in person, but I figured I would look around.
+- I didn't like any of the Android apps available, and the idea of spending 5 minutes to create a whole new account for a casual game of Go offended me on a deep level, so I spent 40 hours making my own Go-based Go library for the purpose of making an ephemeral webapps Go-game engine.
+- ...and so I could put Go in Go, so I could Go on the Go. (I knew you could see where this was headed)
+
+* Steve Was Initially Not Enthused. 
+- As you can see from this chatlog. I can't count the number of times our conversations end with him cursing me. That's real friendship folks.
+
+* Steve Is Still Not Enthused.
+- Until he insulted my programming choices in the library repo, which is really just another way of saying "you're a good friend." And he's humoring me.
+
+* What does this have to do with BlockCypher?
+Okay, back to the task at hand. It's not really "there" yet, but the library I built works, and more importantly it allows the possibility of ephemeral, temporary, web-based games with very small databases requirements...and I got to thinking, this would be a perfect opportunity to make the games more interesting. And you know what makes any game more interesting? Betting, without trusting the server, which means we have a perfect use-case for 2-of-3 multisig. (As an aside, I hope this is legal, but eh, better to ask forgiveness than permission...)
+
+So here's our uber-minimal MVP:
+- Players enter board size, public keys for multisig address and "move" signing, final address for funds if they win, and send initial funds.
+- Why not use ECDSA signing for the moves, too? No accounts, no problem!
+- The server creates its own private/public key pair, and it holds the "oracle" private key for determining who wins.
+- Players move pieces by "signing" their move, server checks to make sure they're not moving twice in a row (and associates board state with multisig).
+- Once both players pass, score is checked. Server readies transaction to winning player's address, asks that player to sign; broadcasts to network.
+- If both players quit/don't want to use the server anymore, they can sign their own multisig transaction with or without BlockCypher's API.
+
+* Demo time
+
+* Maybe a Silly Example, but...
+- With better UX, could actually be a nice experience. Imagine a bitcoin wallet embedded into a phone app that's purely for multisig signing, and you can take a lot of the headache out of that process while still giving users control. You could embed wallets (intended for small amounts) into all sorts of application experiences to reduce this headache, and with BlockCypher's API it wouldn't be hard to implement---but you'd still give someone control of their keys.
+- Now consider what that could represent. Webapps/apps that work in trust-limited and/or database-limited environments. All manner of things, from Mechanical Turk services to invoice systems to virtual goods sales to children's allowances, could be revolutionized. The possibilities are endless. We realy are at the tip of the iceberg here, and BlockCypher can really help you explore the rest of it.
+- And importantly, when I beat Steve at Go, I'll get bitcoin in addition to my restored pride.
+
+* Thank you, and Q&A.
