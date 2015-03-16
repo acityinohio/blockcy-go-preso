@@ -14,4 +14,4 @@ Navigate your web browser to the address listed by "present" the tool. For more 
 
 ## Presentation Notes
 
-My notes are included in the `notes.txt` file---you can follow using the slide headings. To check out the demo mentioned, consider installing my [Bitduck webapp.](https://github.com/acityinohio/bitduck) I might run a dedicated server one day, but it's currently in a pretty alpha state. Feedback on everything here always welcome!
+My notes are included in the `notes.txt` file---you can follow using the slide headings. To check out the demo mentioned, consider [installing my bitduck webapp.](https://github.com/acityinohio/bitduck) I might run a dedicated server one day, but it's currently in a pretty alpha state. Feedback on everything here always welcome!
