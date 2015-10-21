@@ -23,7 +23,7 @@ func main() {
 		CallbackURL:    ""})
 	//Send some bcy to the payment forwarding address
 	micro, err := bcy.SendMicro(gobcy.MicroTX{Priv: Pair1.Private,
-		ToAddr: payment.InputAddr, Value: 100000})
+		ToAddr: payment.InputAddr, Value: 100000, Wait: false})
 
 	//Print out addresses
 	fmt.Printf("Pair1 Address: %s\nPair2 Address: %s\nPair3 Address: %s\nPayment Forwarding Address: %s\n",

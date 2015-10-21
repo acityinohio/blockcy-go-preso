@@ -1,6 +1,6 @@
 Building an Async, Multisig Board Game with Bitcoin
 
-20 Oct 2015
+21 Oct 2015
 
 Josh Cincinnati
 http://dev.blockcypher.com/
@@ -23,6 +23,12 @@ http://dev.blockcypher.com/
 .image images/notch.jpg 400 _
 .caption _No,_not_that_notch_
 
+* MicroTXs Are a Big Deal
+.image images/ant-man.jpg 300 _
+.caption _Unlike_Ant_Man_
+Leverages our own Confidence Factor
+[[https://live.blockcypher.com/btc/][Check it On Our Live Block Explorer]]
+
 * Pay It Forward
 .image images/pay-it-forward.jpg 300 _
 .caption _Haley_Joel_Osment_Explaining_Merkle_Trees_
@@ -36,6 +42,12 @@ But it's deceptively powerful.
 * Let's Kick It Up Even More Notches
 .image images/notch20.jpg 400 _
 .caption _Still_not_that_Notch
+
+* New APIs Released Rapidly
+.image images/lightspeed.jpg 300 _
+- HD Wallets: derive and watch addresses from xpubs.
+- Metadata: private/public key-value associated with blockchain objects.
+- Open Assets: coming soon.
 
 * An Anecdote
 .image images/yodawg.jpg 400 _
