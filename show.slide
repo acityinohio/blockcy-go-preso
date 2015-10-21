@@ -1,16 +1,12 @@
-Deciphering BlockCypher
-A journey in blockchain APIs
-13 Mar 2015
+Building an Async, Multisig Board Game with Bitcoin
+
+20 Oct 2015
 
 Josh Cincinnati
-http://bitbanter.com/
+http://dev.blockcypher.com/
 @acityinohio
 
-* The Best Way to Learn an API? Build a Wrapper!
-.image images/notawrapper.gif 400 _
-.caption _No,_not_that_rapper_
-
-* As a diehard Gopher, I used Go.
+* Just Released Our Go Wrapper
 
 * Some Easy Queries 
 .play code/get_block.go
@@ -39,7 +35,7 @@ But it's deceptively powerful.
 
 * Let's Kick It Up Even More Notches
 .image images/notch20.jpg 400 _
-.caption _Still_not_that_Notch,_but_it's_getting_epic_
+.caption _Still_not_that_Notch
 
 * An Anecdote
 .image images/yodawg.jpg 400 _
@@ -53,21 +49,15 @@ In addition to loving Go, I also love Go (Igo/Baduk).
 .image images/steveandjosh2.png
 
 * Whither BlockCypher?
-One word: cryptowagers. 2-of-3 multisig would be perfect.
-
-An über-minimal MVP:
-
-- Players enter board size, public keys for multisig address and "move" signing, final address for funds if they win, and send initial funds.
-- Why not use ECDSA signing for the moves, too? No accounts, no problem!
-- Players move pieces by "signing" their move, server checks to make sure they're not moving twice in a row (and associates board state with multisig).
-- Once both players pass, score is checked. Server readies transaction to winning player's address, asks that player to sign; broadcasts to network.
-- If both players quit/don't want to use the server anymore, they can sign their own multisig transaction with or without BlockCypher's API.
+- One word: cryptowagers. 2-of-2 multisig would be perfect.
+- An über-minimal MVP:
+- 2-of-2 multisig, record moves with null-data embeds within blockchain...no datastore.
+- No accounts, no problem. Users can use webapp to validate moves/get TX data to sign themselves locally.
+- Web app can validate score at game end, help players assemble transactions.
 
 * Demo Time!
 
 * Maybe a Silly Example, but...
 - With better UX, could actually be a nice experience.
-- And consider what it could represent.
 - Creating webapps/apps that work in trust-limited or database-limited environments.
-- The possibilities are endless.
 - ...and importantly for me, when I finally beat Steve at Go, I'll get bitcoin for my trouble.

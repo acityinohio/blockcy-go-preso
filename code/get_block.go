@@ -2,18 +2,18 @@ package main
 
 import (
 	"fmt"
-	//import my BlockCy repo
-	"github.com/acityinohio/blockcy"
+
+	"github.com/blockcypher/gobcy"
 )
 
 func main() {
 	//Set Blockcy Configuration: Coin/Chain
-	blockcy.Config.Coin, blockcy.Config.Chain = "btc", "main"
+	btc := gobcy.API{"TESTTOKEN", "btc", "main"}
 	//Get Block by height
-	block, _ := blockcy.GetBlock(294322, "")
+	block, _ := btc.GetBlock(294322, "")
 	fmt.Printf("%+v\n", block)
 	//Get latest details on bitcoin blockchain
-	//chain, _ := blockcy.GetChain()
+	//chain, _ := btc.GetChain()
 	//fmt.Printf("%+v\n", chain)
 	return
 }

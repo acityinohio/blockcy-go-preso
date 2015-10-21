@@ -3,32 +3,31 @@ package main
 import (
 	"fmt"
 
-	"github.com/acityinohio/blockcy"
+	"github.com/blockcypher/gobcy"
 )
 
 func main() {
-	blockcy.Config.Token = "e212e91ac4d218cbc18f7eb3975122e3"
 	//START OMIT
-	blockcy.Config.Coin, blockcy.Config.Chain = "bcy", "test"
+	bcy := gobcy.API{"TESTTOKEN", "bcy", "test"}
 	//Generate some addresses
-	Wallet1, _ := blockcy.GenAddrPair()
-	Wallet2, _ := blockcy.GenAddrPair()
-	Wallet3, _ := blockcy.GenAddrPair()
+	Pair1, _ := bcy.GenAddrKeychain()
+	Pair2, _ := bcy.GenAddrKeychain()
+	Pair3, _ := bcy.GenAddrKeychain()
 	//Generate some blockcypher test coin
-	Wallet1.Faucet(1e6)
+	bcy.Faucet(Pair1, 1e6)
 
 	//Post a Payment Forwarding Request
-	payment, err := blockcy.PostPayment(blockcy.Payment{Destination: Wallet3.Address,
-		ProcessAddr:    Wallet2.Address,
+	payment, err := bcy.CreatePayFwd(gobcy.PayFwd{Destination: Pair3.Address,
+		ProcessAddr:    Pair2.Address,
 		ProcessPercent: 0.2,
-		CallbackUrl:    ""})
+		CallbackURL:    ""})
 	//Send some bcy to the payment forwarding address
-	micro, err := blockcy.SendMicro(blockcy.Micro{Private: Wallet1.Private,
+	micro, err := bcy.SendMicro(gobcy.MicroTX{Priv: Pair1.Private,
 		ToAddr: payment.InputAddr, Value: 100000})
 
 	//Print out addresses
-	fmt.Printf("Wallet1 Address: %s\nWallet2 Address: %s\nWallet3 Address: %s\nPayment Forwarding Address: %s\n",
-		Wallet1.Address, Wallet2.Address, Wallet3.Address, payment.InputAddr)
+	fmt.Printf("Pair1 Address: %s\nPair2 Address: %s\nPair3 Address: %s\nPayment Forwarding Address: %s\n",
+		Pair1.Address, Pair2.Address, Pair3.Address, payment.InputAddr)
 	fmt.Printf("Microtransaction hash: %s\n", micro.Hash)
 	//END OMIT
 	if err != nil {
