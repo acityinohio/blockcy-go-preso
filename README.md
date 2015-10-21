@@ -12,6 +12,4 @@ Then, assuming your GOBIN is in your path directory, just run "present" within t
 
 Navigate your web browser to the address listed by "present" the tool. For more info about the present tool, or other configuration options, check the [GoDoc here.](https://godoc.org/golang.org/x/tools/cmd/present)
 
-## Presentation Notes
-
-My notes are included in the `notes.txt` file---you can follow using the slide headings. To check out the demo mentioned, consider [installing my bitduck webapp.](https://github.com/acityinohio/bitduck) I might run a dedicated server one day, but it's currently in a pretty alpha state. Feedback on everything here always welcome!
+To check out the demo mentioned, consider [installing my bitduck webapp.](https://github.com/acityinohio/bitduck) I might run a dedicated server one day, but it's currently in a pretty alpha state. Feedback on everything here always welcome!
